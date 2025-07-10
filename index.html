@@ -73,16 +73,19 @@
       0%, 100% { opacity: 0.6; }
       50% { opacity: 0.2; }
     }
-    .rocket {
+    .rocket-art {
+      font-family: monospace;
+      white-space: pre;
+      font-size: 16px;
+      color: #f00;
+      animation: launchRocket 2s ease-out forwards;
       position: absolute;
       bottom: -100px;
-      width: 60px;
       left: 50%;
       transform: translateX(-50%);
-      animation: launchRocket 2s ease-out forwards;
     }
     @keyframes launchRocket {
-      to { bottom: 120%; }
+      to { bottom: 110%; }
     }
   </style>
 </head>
@@ -96,6 +99,7 @@
 
   <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
   <audio id="launchSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a99f1d65e5.mp3" preload="auto"></audio>
+  <audio id="impactSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a76359f3e5.mp3" preload="auto"></audio>
 
   <script>
     function launchSequence() {
@@ -103,6 +107,7 @@
       const message = document.getElementById('message');
       const alarm = document.getElementById('alarmSound');
       const launchSound = document.getElementById('launchSound');
+      const impactSound = document.getElementById('impactSound');
 
       if (input !== 'CATHERINE') {
         message.innerHTML = '❌ INVALID LAUNCH CODE. SECURITY BREACH DETECTED.';
@@ -123,13 +128,30 @@
       setTimeout(() => {
         launchSound.play();
         message.innerHTML = `
-          <img src="https://i.imgur.com/U3XqH8R.png" class="rocket" alt="Rocket" />
+          <div class="rocket-art">
+              <pre>
+   ^
+  /^\\
+ |###|
+ |###|
+ |###|
+ |###|
+ |###|
+ |###|
+  ||||
+  ||||
+  \__/ 🔥🔥🔥
+              </pre>
+          </div>
           <div class="explosion">💥 IMPACT CONFIRMED 💥</div>
           <p style="margin-top: 20px; color: #0f0; font-size: 18px;">Missile deployed. Coordinates locked. Target neutralized.</p>
           <p style="margin-top: 10px; color: #999; font-size: 14px;">Operation: CATHERINE • Mission Complete.</p>
         `;
         alarm.pause();
         alarm.currentTime = 0;
+        setTimeout(() => {
+          impactSound.play();
+        }, 1500);
       }, 3000);
     }
   </script>
