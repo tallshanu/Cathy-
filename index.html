@@ -15,6 +15,7 @@
       justify-content: center;
       height: 100vh;
       text-align: center;
+      overflow: hidden;
     }
     input {
       padding: 10px;
@@ -23,6 +24,9 @@
       border: none;
       outline: none;
       border-radius: 5px;
+      background: #111;
+      color: #0f0;
+      box-shadow: 0 0 5px #0f0;
     }
     button {
       margin-top: 10px;
@@ -33,13 +37,15 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      box-shadow: 0 0 10px #0f0;
     }
     #message {
       margin-top: 20px;
       font-size: 18px;
+      position: relative;
     }
     .countdown {
-      font-size: 40px;
+      font-size: 48px;
       margin-top: 20px;
       animation: blink 1s step-start infinite;
     }
@@ -54,45 +60,73 @@
     }
     @keyframes boom {
       from { transform: scale(1); }
-      to { transform: scale(1.2); }
+      to { transform: scale(1.3); }
+    }
+    .static-scan {
+      font-size: 14px;
+      color: #0f0;
+      margin-top: 10px;
+      opacity: 0.6;
+      animation: flicker 1.5s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.2; }
+    }
+    .rocket {
+      position: absolute;
+      bottom: -100px;
+      width: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: launchRocket 2s ease-out forwards;
+    }
+    @keyframes launchRocket {
+      to { bottom: 120%; }
     }
   </style>
 </head>
 <body>
   <h1>🚨 NUKE CONTROL PANEL 🚨</h1>
-  <p>Enter Launch Code to Deploy Missile</p>
+  <p>Enter Launch Code to Initiate Strike</p>
   <input type="text" id="codeInput" placeholder="Enter Code..." />
-  <button onclick="launchSequence()">Launch</button>
+  <button onclick="launchSequence()">Authorize Launch</button>
   <div id="message"></div>
+  <p class="static-scan">Secure Channel Link • GPS Locked • Warhead Status: Armed</p>
+
   <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+  <audio id="launchSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a99f1d65e5.mp3" preload="auto"></audio>
 
   <script>
     function launchSequence() {
       const input = document.getElementById('codeInput').value.trim().toUpperCase();
       const message = document.getElementById('message');
       const alarm = document.getElementById('alarmSound');
+      const launchSound = document.getElementById('launchSound');
 
       if (input !== 'CATHERINE') {
-        message.innerHTML = '❌ UNAUTHORIZED LAUNCH CODE. ACCESS DENIED.';
+        message.innerHTML = '❌ INVALID LAUNCH CODE. SECURITY BREACH DETECTED.';
         return;
       }
 
-      message.innerHTML = '<div class=\"countdown\">LAUNCHING IN 3...</div>';
+      message.innerHTML = '<div class="countdown">AUTH CODE ACCEPTED<br>INITIATING STRIKE IN 3...</div>';
       alarm.play();
 
       setTimeout(() => {
-        message.innerHTML = '<div class=\"countdown\">2...</div>';
+        message.innerHTML = '<div class="countdown">2...</div>';
       }, 1000);
 
       setTimeout(() => {
-        message.innerHTML = '<div class=\"countdown\">1...</div>';
+        message.innerHTML = '<div class="countdown">1...</div>';
       }, 2000);
 
       setTimeout(() => {
+        launchSound.play();
         message.innerHTML = `
-          <div class=\"explosion\">💥 NUKE LAUNCHED 💥</div>
-          <p style=\"margin-top: 20px; color: pink; font-size: 20px;\">Catherine, you've officially launched a missile straight into my heart ❤️</p>
-          <p style=\"margin-top: 10px; color: #ccc;\">Mission Accomplished.</p>
+          <img src="https://i.imgur.com/U3XqH8R.png" class="rocket" alt="Rocket" />
+          <div class="explosion">💥 IMPACT CONFIRMED 💥</div>
+          <p style="margin-top: 20px; color: #0f0; font-size: 18px;">Missile deployed. Coordinates locked. Target neutralized.</p>
+          <p style="margin-top: 10px; color: #999; font-size: 14px;">Operation: CATHERINE • Mission Complete.</p>
         `;
         alarm.pause();
         alarm.currentTime = 0;
