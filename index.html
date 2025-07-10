@@ -5,66 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NUKE CONTROL PANEL</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background-color: #000;
-      color: #00ff00;
+      margin: 0;
+      padding: 0;
+      background: #000000;
+      color: #00ff88;
       font-family: 'Courier New', monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      text-align: center;
       overflow: hidden;
+      text-align: center;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      letter-spacing: 3px;
+    }
+    p {
+      margin: 5px 0;
+      color: #00ff00;
+      font-size: 18px;
     }
     input {
-      padding: 10px;
+      padding: 12px 20px;
       font-size: 16px;
-      margin-top: 20px;
+      border-radius: 5px;
       border: none;
       outline: none;
-      border-radius: 5px;
       background: #111;
-      color: #0f0;
-      box-shadow: 0 0 5px #0f0;
+      color: #00ff00;
+      box-shadow: 0 0 10px #00ff00;
     }
     button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
+      position: relative;
+      z-index: 10;
+      margin-top: 15px;
+      padding: 12px 24px;
+      font-size: 18px;
       background-color: #00ff00;
       color: black;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 0 10px #0f0;
+      box-shadow: 0 0 15px #00ff00;
+      transition: transform 0.2s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
     }
     #message {
       margin-top: 20px;
       font-size: 18px;
       position: relative;
+      min-height: 200px;
     }
     .countdown {
       font-size: 48px;
       margin-top: 20px;
       animation: blink 1s step-start infinite;
+      color: #ff5555;
     }
     @keyframes blink {
       50% { opacity: 0; }
     }
     .explosion {
-      font-size: 24px;
-      color: red;
+      font-size: 28px;
+      color: #ff0000;
       margin-top: 30px;
       animation: boom 0.5s alternate infinite;
     }
     @keyframes boom {
       from { transform: scale(1); }
-      to { transform: scale(1.3); }
+      to { transform: scale(1.2); }
     }
     .static-scan {
       font-size: 14px;
-      color: #0f0;
+      color: #00ff88;
       margin-top: 10px;
       opacity: 0.6;
       animation: flicker 1.5s infinite;
@@ -74,10 +98,11 @@
       50% { opacity: 0.2; }
     }
     .rocket-art {
+      z-index: 1;
       font-family: monospace;
       white-space: pre;
-      font-size: 16px;
-      color: #f00;
+      font-size: 18px;
+      color: #ff3c3c;
       animation: launchRocket 2s ease-out forwards;
       position: absolute;
       bottom: -100px;
@@ -91,15 +116,15 @@
       font-size: 0.5em;
     }
     .retreat-button {
-      margin-top: 15px;
-      padding: 8px 16px;
-      font-size: 14px;
-      background-color: #ff0000;
+      margin-top: 20px;
+      padding: 16px 32px;
+      font-size: 20px;
+      background-color: #ff3c3c;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 0 10px red;
+      box-shadow: 0 0 15px red;
     }
   </style>
 </head>
@@ -144,21 +169,22 @@
         message.innerHTML = `
           <div class="rocket-art">
               <pre>
-   ^
-  /^\\
- |###|
- |###|
- |###|
- |###|
- |###|
- |###|
-  ||||
-  ||||
-  \__/ 🔥🔥🔥
-              </pre>
+    /\
+   |==|
+   |  |
+  /____\
+  |####|
+  |####|
+  |####|
+  |####|
+  |####|
+  |####|
+   ||||
+   ||||
+   \__/ 🔥🔥🔥
           </div>
           <div class="explosion">💥 IMPACT CONFIRMED 💥</div>
-          <p style="margin-top: 20px; color: #0f0; font-size: 18px;">Shanu has fallen <span class="small-text">(for you)</span></p>
+          <p style="margin-top: 20px; color: #00ff88; font-size: 18px;">Shanu has fallen <span class="small-text">(for you)</span></p>
           <p style="margin-top: 10px; color: #999; font-size: 14px;">Operation: CATHERINE • Mission Complete.</p>
           <button class="retreat-button" onclick="retreat()">Retreat</button>
         `;
@@ -172,7 +198,7 @@
 
     function retreat() {
       const message = document.getElementById('message');
-      message.innerHTML = '<h2 style="color: #00ff00; font-size: 48px;">YAYAYAYAYAYAYA, Btw You're kinda cute🎉</h2>';
+      message.innerHTML = '<h2 style="color: #00ff88; font-size: 48px;">YAYAYAYA 🎉 BTW you\'re kinda cute :)</h2>';
     }
   </script>
 </body>
