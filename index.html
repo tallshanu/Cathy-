@@ -87,6 +87,20 @@
     @keyframes launchRocket {
       to { bottom: 110%; }
     }
+    .small-text {
+      font-size: 0.5em;
+    }
+    .retreat-button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 14px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 0 10px red;
+    }
   </style>
 </head>
 <body>
@@ -99,7 +113,7 @@
 
   <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
   <audio id="launchSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a99f1d65e5.mp3" preload="auto"></audio>
-  <audio id="impactSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_a76359f3e5.mp3" preload="auto"></audio>
+  <audio id="impactSound" src="https://www.fesliyanstudios.com/play-mp3/6677" preload="auto"></audio>
 
   <script>
     function launchSequence() {
@@ -144,8 +158,9 @@
               </pre>
           </div>
           <div class="explosion">💥 IMPACT CONFIRMED 💥</div>
-          <p style="margin-top: 20px; color: #0f0; font-size: 18px;">Missile deployed. Coordinates locked. Target neutralized.</p>
+          <p style="margin-top: 20px; color: #0f0; font-size: 18px;">Shanu has fallen <span class="small-text">(for you)</span></p>
           <p style="margin-top: 10px; color: #999; font-size: 14px;">Operation: CATHERINE • Mission Complete.</p>
+          <button class="retreat-button" onclick="retreat()">Retreat</button>
         `;
         alarm.pause();
         alarm.currentTime = 0;
@@ -153,6 +168,11 @@
           impactSound.play();
         }, 1500);
       }, 3000);
+    }
+
+    function retreat() {
+      const message = document.getElementById('message');
+      message.innerHTML = '<h2 style="color: #00ff00; font-size: 48px;">YAYAYAYAYAYAYA LESSSSSS GOOOOO CUTIEEE🎉</h2>';
     }
   </script>
 </body>
