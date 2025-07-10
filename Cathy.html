@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NUKE CONTROL PANEL</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #00ff00;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .countdown {
+      font-size: 40px;
+      margin-top: 20px;
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .explosion {
+      font-size: 24px;
+      color: red;
+      margin-top: 30px;
+      animation: boom 0.5s alternate infinite;
+    }
+    @keyframes boom {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <h1>🚨 NUKE CONTROL PANEL 🚨</h1>
+  <p>Enter Launch Code to Deploy Missile</p>
+  <input type="text" id="codeInput" placeholder="Enter Code..." />
+  <button onclick="launchSequence()">Launch</button>
+  <div id="message"></div>
+  <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>  <script>
+    function launchSequence() {
+      const input = document.getElementById('codeInput').value.trim().toUpperCase();
+      const message = document.getElementById('message');
+      const alarm = document.getElementById('alarmSound');
+
+      if (input !== 'CATHERINE') {
+        message.innerHTML = '❌ UNAUTHORIZED LAUNCH CODE. ACCESS DENIED.';
+        return;
+      }
+
+      message.innerHTML = '<div class="countdown">LAUNCHING IN 3...</div>';
+      alarm.play();
+
+      setTimeout(() => {
+        message.innerHTML = '<div class="countdown">2...</div>';
+      }, 1000);
+
+      setTimeout(() => {
+        message.innerHTML = '<div class="countdown">1...</div>';
+      }, 2000);
+
+      setTimeout(() => {
+        message.innerHTML = `
+          <div class="explosion">💥 NUKE LAUNCHED 💥</div>
+          <p style="margin-top: 20px; color: pink; font-size: 20px;">Catherine, you've officially launched a missile straight into my heart ❤️</p>
+          <p style="margin-top: 10px; color: #ccc;">Mission Accomplished.</p>
+        `;
+        alarm.pause();
+        alarm.currentTime = 0;
+      }, 3000);
+    }
+  </script></body>
+</html>
