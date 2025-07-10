@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,7 +64,9 @@
   <input type="text" id="codeInput" placeholder="Enter Code..." />
   <button onclick="launchSequence()">Launch</button>
   <div id="message"></div>
-  <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>  <script>
+  <audio id="alarmSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <script>
     function launchSequence() {
       const input = document.getElementById('codeInput').value.trim().toUpperCase();
       const message = document.getElementById('message');
@@ -74,26 +77,27 @@
         return;
       }
 
-      message.innerHTML = '<div class="countdown">LAUNCHING IN 3...</div>';
+      message.innerHTML = '<div class=\"countdown\">LAUNCHING IN 3...</div>';
       alarm.play();
 
       setTimeout(() => {
-        message.innerHTML = '<div class="countdown">2...</div>';
+        message.innerHTML = '<div class=\"countdown\">2...</div>';
       }, 1000);
 
       setTimeout(() => {
-        message.innerHTML = '<div class="countdown">1...</div>';
+        message.innerHTML = '<div class=\"countdown\">1...</div>';
       }, 2000);
 
       setTimeout(() => {
         message.innerHTML = `
-          <div class="explosion">💥 NUKE LAUNCHED 💥</div>
-          <p style="margin-top: 20px; color: pink; font-size: 20px;">Catherine, you've officially launched a missile straight into my heart ❤️</p>
-          <p style="margin-top: 10px; color: #ccc;">Mission Accomplished.</p>
+          <div class=\"explosion\">💥 NUKE LAUNCHED 💥</div>
+          <p style=\"margin-top: 20px; color: pink; font-size: 20px;\">Catherine, you've officially launched a missile straight into my heart ❤️</p>
+          <p style=\"margin-top: 10px; color: #ccc;\">Mission Accomplished.</p>
         `;
         alarm.pause();
         alarm.currentTime = 0;
       }, 3000);
     }
-  </script></body>
+  </script>
+</body>
 </html>
